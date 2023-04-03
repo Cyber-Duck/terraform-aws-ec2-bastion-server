@@ -84,6 +84,7 @@ resource "aws_instance" "default" {
     content {
       encrypted             = var.ebs_block_device_encrypted
       volume_size           = var.ebs_block_device_volume_size
+      volume_type           = var.root_block_device_volume_type
       delete_on_termination = var.ebs_delete_on_termination
       device_name           = var.ebs_device_name
     }

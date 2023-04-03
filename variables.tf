@@ -56,6 +56,16 @@ variable "root_block_device_volume_size" {
   description = "The volume size (in GiB) to provision for the root block device. It cannot be smaller than the AMI it refers to."
 }
 
+variable "root_block_device_volume_type" {
+  type        = string
+  default     = "gp3"
+  description = "The volume type for the EBS root volume"
+  validation {
+    condition = contains(["standard", "gp2", "gp3", "io1", "io2", "sc1", "st1"], var.root_block_device_volume_type)
+    error_message = "The root volume must specify a supported EBS type"
+  }
+}
+
 variable "disable_api_termination" {
   type        = bool
   description = "Enable EC2 Instance Termination Protection"
